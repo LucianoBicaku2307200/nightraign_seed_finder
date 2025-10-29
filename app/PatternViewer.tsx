@@ -2,6 +2,7 @@
 import { useState, useMemo } from "react";
 import { ChevronRight } from "lucide-react";
 import patternsData from "@/public/nightreign_patterns.json";
+import Image from "next/image";
 
 const PatternViewer = () => {
   const [patterns] = useState(patternsData);
@@ -103,13 +104,14 @@ const PatternViewer = () => {
                         setSelectedShiftingEarth("");
                         setSelectedSpawnPoint("");
                       }}
-                      className={`px-6 py-3 rounded-lg font-medium transition ${
+                      className={`px-6 py-3 rounded-lg font-medium transition flex flex-col gap-2 justify-center items-center ${
                         selectedNightlord === nightlord
                           ? "bg-amber-500 text-gray-900"
                           : "bg-gray-800 border border-gray-700 hover:border-amber-500 text-gray-100"
                       }`}
                     >
                       {nightlord}
+                      <Image src={`/bosses/${nightlord.toLocaleLowerCase()}.jpg`} alt={nightlord} width={200} height={200} className="inline-block ml-2 align-middle"/>
                     </button>
                   ))}
                 </div>
@@ -134,7 +136,7 @@ const PatternViewer = () => {
                           setSelectedShiftingEarth(earth);
                           setSelectedSpawnPoint("");
                         }}
-                        className={`px-6 py-3 rounded-lg font-medium transition ${
+                        className={`px-6 py-3 rounded-lg font-medium transition flex flex-col gap-2 justify-center items-center ${
                           selectedShiftingEarth === earth
                             ? "bg-amber-500 text-gray-900"
                             : "bg-gray-800 border border-gray-700 hover:border-amber-500 text-gray-100"
@@ -145,7 +147,7 @@ const PatternViewer = () => {
                     ))}
                   </div>
                 </div>
-              )}
+              )} 
 
               {/* Step 3: Spawn Point */}
               {selectedShiftingEarth && (
@@ -163,18 +165,19 @@ const PatternViewer = () => {
                       <button
                         key={point}
                         onClick={() => setSelectedSpawnPoint(point)}
-                        className={`px-6 py-3 rounded-lg font-medium transition ${
+                        className={`px-6 py-3 rounded-lg font-medium transition flex flex-col gap-2 justify-center items-center${
                           selectedSpawnPoint === point
                             ? "bg-amber-500 text-gray-900"
                             : "bg-gray-800 border border-gray-700 hover:border-amber-500 text-gray-100"
                         }`}
                       >
                         {point}
+                        <Image src={`/spawnPoints/${point}.png`} alt={point} width={200} height={200} className="inline-block ml-2 align-middle"/>
                       </button>
                     ))}
                   </div>
                 </div>
-              )}
+              )} 
             </>
           )}
 
